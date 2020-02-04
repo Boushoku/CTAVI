@@ -28,7 +28,7 @@ class PostAdapter(val post: ArrayList<PostModel>): RecyclerView.Adapter<PostAdap
             view.namePost.text=post.postName
             view.post.text=post.content
             view.ctavie.text="CTAVIE "+post.ctavie.toString()
-            view.dislike.text="DISLIKE "+post.dislike.toString()
+            view.like.text="LIKE "+post.like.toString()
             Picasso.get().load(post.profilePicture).resize(200, 200).into(view.profilePicture)
 
         }

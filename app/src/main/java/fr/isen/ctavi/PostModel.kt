@@ -6,5 +6,5 @@ class PostModel {
     var postName:String? = null
     var content:String? = null
     var ctavie:Int? = null
-    var dislike:Int?= null
+    var like:Int?= null
 }

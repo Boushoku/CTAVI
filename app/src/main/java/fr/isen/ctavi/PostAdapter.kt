@@ -7,8 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycle_view_wall.view.*
 
+<<<<<<< HEAD
+
+class PersonAdapter(val post: ArrayList<PostModel>): RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
+=======
 class PostAdapter(val post: ArrayList<PostModel>): RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+>>>>>>> 370e1d3626d426b8b1d4f5909bd7c5b0a1489c2e
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycle_view_wall, parent, false)
         return PostViewHolder(view)
     }

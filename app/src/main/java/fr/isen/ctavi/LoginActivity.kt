@@ -2,6 +2,7 @@ package fr.isen.ctavi
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -18,28 +19,31 @@ class LoginActivity : AppCompatActivity() {
 
         //Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-
-        var email = identifiant.text.toString()
-        var password = password.text.toString()
         val intentHomePage = Intent(this, HomeActivity::class.java)
         val intentCreateAccount = Intent(this, CreateAccountActivity::class.java)
-
         validateButton.setOnClickListener{
-
-            auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-                    //updateUI(user)
-                    startActivity(intentHomePage)
-                    Toast.makeText(this, "Welcome " + identifiant.text.toString(), Toast.LENGTH_LONG).show()
-                } else {
-                    // If sign in fails: error message
-                    //updateUI(null)
-                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                }
-        }
+            if(identifiant.text.isNotEmpty()&&password.text.isNotEmpty())
+            {
+                auth.signInWithEmailAndPassword(identifiant.text.toString(), password.text.toString())
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            val user = auth.currentUser
+                            //updateUI(user)
+                            startActivity(intentHomePage)
+                            Toast.makeText(this, "Welcome " + identifiant.text.toString(), Toast.LENGTH_LONG).show()
+                        } else {
+                            // If sign in fails: error message
+                            //updateUI(null)
+                            Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
+            else
+            {
+                Toast.makeText(this, "Email or password is empty.",
+                    Toast.LENGTH_SHORT).show()
+            }
     }
 
         createAccountButton.setOnClickListener{

@@ -1,25 +1,26 @@
 package fr.isen.ctavi
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.multidex.MultiDex
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+
 
 class LoginActivity : AppCompatActivity() {
 
     //Firebase references
     private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         //Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-        val intentHomePage = Intent(this, WallActivity::class.java)
+        val intentWallActivity = Intent(this, WallActivity::class.java)
         val intentCreateAccount = Intent(this, CreateAccountActivity::class.java)
         validateButton.setOnClickListener{
             if(identifiant.text.isNotEmpty()&&password.text.isNotEmpty())
@@ -30,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
                             // Sign in success, update UI with the signed-in user's information
                             val user = auth.currentUser
                             //updateUI(user)
-                            startActivity(intentHomePage)
+                            startActivity(intentWallActivity)
                             Toast.makeText(this, "Welcome " + identifiant.text.toString(), Toast.LENGTH_LONG).show()
                         } else {
                             // If sign in fails: error message

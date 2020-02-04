@@ -5,6 +5,6 @@ class PostModel {
     var profilePicture:String?= null
     var postName:String? = null
     var content:String? = null
-    var ctavie:String? = null
-    var like:String?= null
+    var ctavie:Int? = null
+    var dislike:Int?= null
 }

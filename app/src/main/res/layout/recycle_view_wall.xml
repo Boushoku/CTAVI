@@ -54,7 +54,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/like"
+        android:id="@+id/dislike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DISLIKE"
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/like"
+        app:layout_constraintTop_toBottomOf="@+id/dislike"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

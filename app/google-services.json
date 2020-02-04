@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1046663834634",
+    "firebase_url": "https://ctavi-e8bf5.firebaseio.com",
+    "project_id": "ctavi-e8bf5",
+    "storage_bucket": "ctavi-e8bf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046663834634:android:47f4d221eab83c772a03f3",
+        "android_client_info": {
+          "package_name": "fr.isen.ctavi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046663834634-8dk5csqcki61oo1fa6k3759q9jg8bg1o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYsmmnI4iwSCNt2Jbg42gdjASbGh-2yyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046663834634-8dk5csqcki61oo1fa6k3759q9jg8bg1o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

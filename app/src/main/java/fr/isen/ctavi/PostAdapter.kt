@@ -30,7 +30,7 @@ class PostAdapter(val post: MutableList<PostModel>): RecyclerView.Adapter<PostAd
             view.ctavie.text="CTAVIE "+post.ctavie.toString()
             view.like.text="LIKE "+post.like.toString()
             Picasso.get().load(post.profilePicture).resize(200, 200).into(view.profilePicture)
-
+            view.comment.id=post.comment.toInt()
         }
     }
 }

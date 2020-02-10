@@ -33,4 +33,5 @@
     <string name="update_account">Update account</string>
     <string name="create_new_name">Create new name</string>
     <string name="username">Username</string>
+    <string name="upload_profile_pic">Upload Profile Pic</string>
 </resources>

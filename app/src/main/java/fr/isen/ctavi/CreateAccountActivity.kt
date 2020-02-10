@@ -1,27 +1,41 @@
 package fr.isen.ctavi
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_create_account.*
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.identifiant
-import kotlinx.android.synthetic.main.activity_login.password
-import kotlinx.android.synthetic.main.activity_login.validateButton
+import java.util.*
+
 
 class CreateAccountActivity: AppCompatActivity() {
 
+
+    private var storage: FirebaseStorage? = null
+    lateinit var filePath: Uri
     private lateinit var auth: FirebaseAuth
     private val TAG = "CreateAccountActivity"
+
+    companion object {
+        val pictureRequestCode = 1
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
+
+        pictureButton.setOnClickListener {
+            onChangePhoto()
+        }
 
         auth = FirebaseAuth.getInstance()
         val intentLogin = Intent(this, LoginActivity::class.java)
@@ -41,7 +55,8 @@ class CreateAccountActivity: AppCompatActivity() {
                                         // Sign in success, update UI with the signed-in user's information
                                         val profileUpdates = UserProfileChangeRequest.Builder()
                                             .setDisplayName(username.text.toString())
-                                            //.setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+
+                                            .setPhotoUri(Uri.parse(filePath.toString()))
                                             .build()
                                         user?.updateProfile(profileUpdates)
                                             ?.addOnCompleteListener { task ->
@@ -80,6 +95,37 @@ class CreateAccountActivity: AppCompatActivity() {
             }
         }
 
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == pictureRequestCode &&
+            resultCode == Activity.RESULT_OK && data != null && data.data != null ) {
+            if(data.data != null) { // Gallery
+                filePath = data.data!!
+                pictureButton.setImageURI(data.data)
+                val storageReference = storage?.reference
+                val riversRef = storageReference?.child("images/")
+                Log.d(TAG, filePath.toString())
+                filePath?.let { riversRef?.putFile(it) }
+
+
+            } else { // Camera
+                val bitmap = data.extras?.get("data") as? Bitmap
+                bitmap?.let {
+                    pictureButton.setImageBitmap(it)
+                }
+            }
+        }
+    }
+    fun onChangePhoto() {
+        val galleryIntent = Intent(Intent.ACTION_PICK)
+        galleryIntent.type = "image/*"
+
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+        val intentChooser = Intent.createChooser(galleryIntent, "Choose your picture library")
+        intentChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(cameraIntent))
+        startActivityForResult(intentChooser, pictureRequestCode)
     }
 
 }

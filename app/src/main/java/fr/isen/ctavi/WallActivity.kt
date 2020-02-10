@@ -6,8 +6,6 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Source
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_wall.*
 
 class WallActivity : AppCompatActivity() {

@@ -15,9 +15,7 @@ class CreatePostActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_post)
-        if(content.text.isNotEmpty() && postName.text.isNotEmpty())
-        {
-            validatePost.setOnClickListener {
+        validatePost.setOnClickListener {
                 val post = hashMapOf(
                     "userId" to user?.displayName.toString(),
                     "photoUrl" to user?.photoUrl.toString(),
@@ -34,6 +32,5 @@ class CreatePostActivity : AppCompatActivity() {
                     }
                 startActivity(Intent(this,WallActivity::class.java))
             }
-        }
     }
 }

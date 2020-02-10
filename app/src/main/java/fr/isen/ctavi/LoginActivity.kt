@@ -31,8 +31,8 @@ class LoginActivity : AppCompatActivity() {
                             // Sign in success, update UI with the signed-in user's information
                             val user = auth.currentUser
                             //updateUI(user)
-                            startActivity(intentWallActivity)
-                            //startActivity(Intent(this,CreatePostActivity::class.java))
+                            //startActivity(intentWallActivity)
+                            startActivity(Intent(this,CreatePostActivity::class.java))
                             Toast.makeText(this, "Welcome " + identifiant.text.toString(), Toast.LENGTH_LONG).show()
                         } else {
                             // If sign in fails: error message

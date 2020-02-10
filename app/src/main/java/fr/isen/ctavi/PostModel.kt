@@ -6,5 +6,6 @@ class PostModel(
     var postName:String = "",
     var content:String = "",
     var ctavie:String = "",
-    var like:String = ""
+    var like:String = "",
+    var comment:String = ""
 )

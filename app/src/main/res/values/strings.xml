@@ -30,4 +30,7 @@
     <string name="test">Test</string>
     <string name="identifiant">Identifiant</string>
     <string name="password">Password</string>
+    <string name="update_account">Update account</string>
+    <string name="create_new_name">Create new name</string>
+    <string name="username">Username</string>
 </resources>

@@ -15,19 +15,19 @@ class CommentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_comment)
         val com = intent.getStringExtra("postId")
         val db = FirebaseFirestore.getInstance()
-        var comList = mutableListOf<PostModel>()
+        var comList = mutableListOf<CommentModel>()
         val comment = db.collection("Comments").whereEqualTo("postId",com).get()
             .addOnSuccessListener { result ->
                     comList = result.documents.map {
                         Log.d("test", "${it.id} => ${it.data}")
                         CommentModel(
-                            it.postId,
-                            it.content,
-                            it.userId
+                            it["postId"].toString(),
+                            it["content"].toString(),
+                            it["userId"].toString()
                         )
                     }.toMutableList()
                 recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                recyclerView.adapter = PostAdapter(comList)
+                recyclerView.adapter = CommentAdapter(comList)
                 }
             .addOnFailureListener { exception ->
                 Log.w("test", "Error getting documents: ", exception)

@@ -29,7 +29,7 @@ class WallActivity : AppCompatActivity() {
                 Log.w("test", "Error getting documents.", exception)
             }
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = PostAdapter(personList)
+        //recyclerView.adapter = PostAdapter(personList)
         /*val postList=ArrayList<PostModel>()
         postList.forEach()
         {

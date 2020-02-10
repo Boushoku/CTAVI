@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
                             val user = auth.currentUser
                             //updateUI(user)
                             startActivity(intentWallActivity)
+                            //startActivity(Intent(this,CreatePostActivity::class.java))
                             Toast.makeText(this, "Welcome " + identifiant.text.toString(), Toast.LENGTH_LONG).show()
                         } else {
                             // If sign in fails: error message

@@ -4,9 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_create_post.*
+import kotlinx.android.synthetic.main.activity_wall.*
 
 class CreatePostActivity : AppCompatActivity() {
 
@@ -30,7 +33,8 @@ class CreatePostActivity : AppCompatActivity() {
                     .addOnFailureListener{
                         e -> Log.w("addPost", "Error adding document", e)
                     }
-                startActivity(Intent(this,WallActivity::class.java))
+
+            startActivity(Intent(this,WallActivity::class.java))
             }
     }
 }

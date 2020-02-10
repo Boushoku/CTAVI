@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,7 +20,7 @@ class WallActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         val user = FirebaseAuth.getInstance().currentUser
         var postList = mutableListOf<PostModel>()
-        val commentAct = Intent(this, CommentActivity::class.java)
+        //val commentAct = Intent(this, CommentActivity::class.java)
         Log.d("test",db.toString())
         val posts = db.collection("Posts")
         posts
@@ -28,7 +29,7 @@ class WallActivity : AppCompatActivity() {
                  postList = result.documents.map {
                      Log.d("test", "${it.id} => ${it.data}")
                      Log.d("test", user?.photoUrl.toString())
-                     commentAct.putExtra("postId",it.id)
+                     //commentAct.putExtra("postId",it.id)
                      PostModel(
                          it["userId"].toString(),
                          user?.photoUrl.toString(),
@@ -39,14 +40,20 @@ class WallActivity : AppCompatActivity() {
                          it.id
                      )
                  }.toMutableList()
-                recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                recyclerView.adapter = PostAdapter(postList)
-                comment.setOnClickListener{
+                /*comment.setOnClickListener{
                     startActivity(commentAct)
-                }
+                }*/
+                recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                recyclerView.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
+                recyclerView.adapter = PostAdapter(postList)
             }
             .addOnFailureListener { exception ->
                 Log.w("test", "Error getting documents.", exception)
             }
+
+        imageButtonAddPost.setOnClickListener{
+            val intentCreatePost = Intent(this, CreatePostActivity::class.java)
+            startActivity(intentCreatePost)
+        }
     }
 }

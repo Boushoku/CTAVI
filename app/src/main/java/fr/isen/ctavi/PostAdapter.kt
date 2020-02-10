@@ -3,6 +3,7 @@ package fr.isen.ctavi
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycle_view_wall.view.*
@@ -30,7 +31,7 @@ class PostAdapter(val post: MutableList<PostModel>): RecyclerView.Adapter<PostAd
             view.ctavie.text="CTAVIE "+post.ctavie.toString()
             view.like.text="LIKE "+post.like.toString()
             Picasso.get().load(post.profilePicture).resize(200, 200).into(view.profilePicture)
-            view.comment.id=post.comment.toInt()
+            //view.comment.hint=post.comment
         }
     }
 }
